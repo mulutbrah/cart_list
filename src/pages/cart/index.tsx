@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import CartItem from '../components/CartItem';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import CartItem from '../../components/CartItem';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
-import { get } from '../api/carts';
+import { get } from '../../api/carts';
 
 import './style.scss'
 

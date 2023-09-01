@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { formatIDRCurrency } from '../../utils/helper';
 
 import './style.scss'
-import { formatIDRCurrency } from '../../utils/helper';
 
 // Define a Product type with the 'selected' property conditionally
 interface Product {
@@ -47,44 +49,47 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove, onSelect, handle
   };
 
   return (
-    <div className="cart-item py-4 px-2">
-      <div className='flex'>
+      <div className="cart-item py-4 px-2">
         <div className='flex'>
-          <input
-            type="checkbox"
-            checked={product.selected}
-            onChange={handleSelectToggle}
-          />
-          <div className='cart-item__image'>
-            <img
-              src={product.thumbnailUrl}
-              alt={product.name}
+          <div className='flex'>
+            <input
+              type="checkbox"
+              checked={product.selected}
+              onChange={handleSelectToggle}
             />
-          </div>
-        </div>
-
-        <div className='w-full'>
-          <div className='flex justify-between'>
-            <p>
-              {product.name}
-            </p>
-            <div>
-              <button onClick={handleRemoveItem}>Hapus</button>
+            <div className='cart-item__image'>
+              <img
+                src={product.thumbnailUrl}
+                alt={product.name}
+              />
             </div>
           </div>
-            <div className="cart-item-details">
-            <div className="cart-item-info flex justify-between">
-              <div className="cart-item-quantity">
-                <button onClick={handleQuantityDecrement}>-</button>
-                <span>{product.quantity}</span>
-                <button onClick={handleQuantityIncrement}>+</button>
+
+          <div className='w-full'>
+            <div className='flex justify-between'>
+              <Link to={`/products/${product.id}`}>
+                <p>
+                  {product.name}
+                </p>
+              </Link>
+
+              <div>
+                <button onClick={handleRemoveItem}>Hapus</button>
               </div>
-              <p className='font-semibold'>{formatIDRCurrency(product.price)}</p>
+            </div>
+              <div className="cart-item-details">
+              <div className="cart-item-info flex justify-between">
+                <div className="cart-item-quantity">
+                  <button onClick={handleQuantityDecrement}>-</button>
+                  <span>{product.quantity}</span>
+                  <button onClick={handleQuantityIncrement}>+</button>
+                </div>
+                <p className='font-semibold'>{formatIDRCurrency(product.price)}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

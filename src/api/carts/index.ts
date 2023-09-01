@@ -13,7 +13,7 @@ export const get = async () => {
     }
 };
 
-export const getOne = async (id: string) => {
+export const getOne = async (id: any) => {
   try {
     const response = await axios.get(API_URL + '/' + id);
 

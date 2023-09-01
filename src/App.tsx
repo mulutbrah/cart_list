@@ -1,11 +1,19 @@
-import React from 'react';
+import { Suspense } from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
 import CartPage from './pages/cart';
+import ProductPage from './pages/index/product';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <CartPage />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CartPage />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 };
 

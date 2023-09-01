@@ -1,0 +1,22 @@
+.product-page {
+    width: 600px;
+
+    &-item {
+        &__image {
+            margin-right: 20px;
+            height: 200px;
+            width: 200px;
+
+            img {
+                border-radius: 13px;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+    }
+
+    &-header {
+        border-bottom: solid 1px #bdbdbd;
+        padding: 10px 0;
+    }
+}
