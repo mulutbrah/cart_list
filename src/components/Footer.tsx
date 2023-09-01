@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatIDRCurrency } from '../utils/helper';
 
 interface FooterProps {
   selectedItemCount: number;
@@ -10,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ selectedItemCount, totalPrice }) => {
     <div className="footer">
       <div className="footer-summary flex justify-between">
         <p className='font-light'>{selectedItemCount} products</p>
-        <p>Rp {totalPrice}</p>
+        <p className='font-semibold'>{formatIDRCurrency(totalPrice)}</p>
       </div>
     </div>
   );

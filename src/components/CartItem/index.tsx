@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './style.scss'
+import { formatIDRCurrency } from '../../utils/helper';
 
 // Define a Product type with the 'selected' property conditionally
 interface Product {
@@ -78,7 +79,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove, onSelect, handle
                 <span>{product.quantity}</span>
                 <button onClick={handleQuantityIncrement}>+</button>
               </div>
-              <p className='font-semibold'>Rp{product.price}</p>
+              <p className='font-semibold'>{formatIDRCurrency(product.price)}</p>
             </div>
           </div>
         </div>
