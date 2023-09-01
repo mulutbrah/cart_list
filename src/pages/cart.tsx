@@ -20,7 +20,6 @@ interface Product {
 const CartPage: React.FC = () => {
   const [originalSource, setOriginalSource] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<Product[]>([]);
-
   const [selectAll, setSelectAll] = useState(true);
 
   const handleSelectAll = () => {
@@ -63,9 +62,17 @@ const CartPage: React.FC = () => {
   }
 
   const handleUpdateCartItem = (product: Product) => {
+    const findOgData = originalSource.filter(item => item.id === product.id)
+
+    if(findOgData.length === 0) return false
+
     const res = cartItems.map((item) => {
         if (item.id === product.id) {
-          return { ...item, quantity: product.quantity, price: product.price };
+          return { 
+            ...item, 
+            quantity: product.quantity, 
+            price: product.quantity * findOgData[0].price
+        };
         }
         return item;
     });
