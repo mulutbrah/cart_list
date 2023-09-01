@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import CartItem from '../components/CartItem';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+import { get } from '../api/carts';
 
 import './style.scss'
 
@@ -15,24 +18,8 @@ interface Product {
 }
 
 const CartPage: React.FC = () => {
-  const [cartItems, setCartItems] = useState<Product[]>([
-    { 
-        id: 1, 
-        name: 'Product 1', 
-        thumbnailUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zm2HhYX5NJFrsbvGBXDWpAHaE8%26pid%3DApi&f=1&ipt=80d1b67f1866e7d3f9b76150c0dac161b253de9a4dbb857d497414700eb05765&ipo=images',
-        price: 100000, 
-        selected: true,
-        quantity: 1
-    },
-    { 
-        id: 2, 
-        name: 'Product 2', 
-        thumbnailUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zm2HhYX5NJFrsbvGBXDWpAHaE8%26pid%3DApi&f=1&ipt=80d1b67f1866e7d3f9b76150c0dac161b253de9a4dbb857d497414700eb05765&ipo=images',
-        price: 300000, 
-        selected: true,
-        quantity: 1
-    },
-  ]);
+  const [originalSource, setOriginalSource] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
 
   const [selectAll, setSelectAll] = useState(true);
 
@@ -85,6 +72,25 @@ const CartPage: React.FC = () => {
 
     setCartItems(res);
   }
+
+  const fetch = async () => {
+    try {
+      const res = await get();
+      const og = [...res];
+      const carts = res.map((item:any) => ({...item, selected: true }));
+
+      setOriginalSource(og);
+      setCartItems(carts);
+    }catch {
+        // 
+    }finally {
+        // 
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, [])
 
   return (
     <div className="cart-page m-auto">
