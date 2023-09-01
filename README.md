@@ -22,7 +22,7 @@ This project is a web application for managing a shopping cart. It allows users 
 
 The project's codebase is organized as follows:
 
-src/
+`src/
 |-- api/
 | |-- carts/
 | | |-- index.ts
@@ -44,7 +44,7 @@ src/
 | |-- utils/
 | | |-- helper.ts
 |-- App.tsx
-|-- index.tsx
+|-- index.tsx`
 
 - **api/**: The services directory contains utility functions for making HTTP requests to the JSON Server, this directory contains `carts`, which are resonsible for managing carts api which encapsulated in the `index.ts` file.
 
