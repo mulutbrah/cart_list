@@ -1,5 +1,6 @@
 export const formatIDRCurrency = (number: number) => {
-    if (isNaN(number)) return 0
+    if (!number) return 'Rp0'
+    if (isNaN(number)) return 'Rp0'
 
     // Convert the number to a string and remove any non-digit characters
     const numberString = String(number).replace(/\D/g, '');
