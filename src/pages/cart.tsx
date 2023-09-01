@@ -3,6 +3,8 @@ import CartItem from '../components/CartItem';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import './style.scss'
+
 interface Product {
   id: number;
   name: string;
@@ -59,7 +61,7 @@ const CartPage: React.FC = () => {
   }
 
   return (
-    <div className="cart-page">
+    <div className="cart-page m-auto">
       <Header
         selectAll={selectAll}
         onSelectAll={handleSelectAll}

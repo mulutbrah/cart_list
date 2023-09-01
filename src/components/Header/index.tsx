@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './style.scss'
+
 interface HeaderProps {
   selectAll: boolean;
   onSelectAll: () => void;
@@ -15,15 +17,17 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className="header">
-      <h1>Cart</h1>
-      <div className="header-controls">
-        <label>
+      <h1 className='text-2xl py-4 px-2 font-semibold'>Cart</h1>
+
+      <div className="header-controls flex justify-between py-2 px-2">
+        <label className='font-semibold'>
           <input
             type="checkbox"
             checked={selectAll}
             onChange={onSelectAll}
+            className='mr-2'
           />
-          Pilih Semua
+          <span>Pilih Semua</span>
         </label>
         <button
           onClick={onDeleteSelected}

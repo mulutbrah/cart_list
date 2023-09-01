@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './style.scss'
+
 // Define a Product type with the 'selected' property conditionally
 interface Product {
     id: number;
@@ -37,26 +39,31 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove, onSelect }) => {
   };
 
   return (
-    <div className="cart-item">
-      <label>
-        <input
-          type="checkbox"
-          checked={product.selected}
-          onChange={handleSelectToggle}
-        />
-        {product.name}
-      </label>
+    <div className="cart-item py-4 px-2">
+      <div className='flex justify-between'>
+        <div className='flex'>
+          <input
+            type="checkbox"
+            checked={product.selected}
+            onChange={handleSelectToggle}
+          />
+          {product.name}
+        </div>
+
+        <div>
+          <button onClick={handleRemoveItem}>Hapus</button>
+        </div>
+      </div>
       <div className="cart-item-details">
-        <div className="cart-item-info">
-          <p>Price: {product.price} IDR</p>
+        <div className="cart-item-info flex justify-between">
           <div className="cart-item-quantity">
             <button onClick={handleQuantityDecrement}>-</button>
             <span>{quantity}</span>
             <button onClick={handleQuantityIncrement}>+</button>
           </div>
+          <p className='font-semibold'>Rp{product.price}</p>
         </div>
       </div>
-      <button onClick={handleRemoveItem}>Hapus</button>
     </div>
   );
 };
