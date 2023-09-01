@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import CartPage from './pages/cart';
-import ProductPage from './pages/index/product';
+import ProductPage from './pages/product';
 
 const App: React.FC = () => {
   return (
